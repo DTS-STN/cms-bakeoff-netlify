@@ -5,6 +5,6 @@ language: en
 ---
 Some text at the top of the post.
 
-![](/images/uploads/nathan-anderson-severianalone.jpg)
+![Severian with Terminus Est](/images/uploads/nathan-anderson-severianalone.jpg "Severian the Lame")
 
 Some more text after the image.
