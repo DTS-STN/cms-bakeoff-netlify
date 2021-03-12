@@ -2,13 +2,16 @@ backend:
   name: git-gateway
   branch: i18n-editor
 
+# when using the default proxy server port
+local_backend: true
+
 publish_mode: editorial_workflow
 
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
 i18n:
-  structure: multiple_folders
+  structure: multiple_files
   locales: [en, fr]
   default_locale: en
 
@@ -32,9 +35,6 @@ collections:
         date_format: "YYYY-MM-DD"
         time_format: false
         i18n: duplicate
-      - label: "Language"
-        name: "language"
-        i18n: true
       - label: "Body" 
         name: "body"
         widget: "markdown"
