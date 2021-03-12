@@ -1,6 +1,6 @@
 backend:
-  name: test-repo
-  branch: main
+  name: git-gateway
+  branch: i18n-editor
 
 publish_mode: editorial_workflow
 
