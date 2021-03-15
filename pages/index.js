@@ -53,7 +53,7 @@ export default function Home({ allPostsData }) {
     return allPostsData[0] === undefined
       ? null
       : allPostsData.map(({ id, date, title , lang}) => {
-          if (id.slice(-2) === language)
+          if (lang === language)
             return (
               <li className={utilStyles.listItem} key={id}>
                 <Link href={`${lang}/posts/${id}`}>
