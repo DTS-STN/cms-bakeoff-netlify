@@ -6,6 +6,7 @@ import ToggleButton from './toggleButton'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
 import { LanguageContext, locales } from '../i18n/LanguageProvider';
+import useTranslation from '../i18n/useTranslation'
 
 export const siteTitle = 'Next.js Sample Website'
 const name = 'DTS-STN'
@@ -13,6 +14,8 @@ const name = 'DTS-STN'
 export default function Layout({ children, home }) {
   const [locale, setLocale] = useContext(LanguageContext);
   const router = useRouter()
+
+  const { t } = useTranslation()
   
   function handleLocaleChange() {
     const language = locale === 'en' ? 'fr' : 'en'
@@ -79,7 +82,7 @@ export default function Layout({ children, home }) {
       {!home && (
         <div className={styles.backToHome}>
           <Link href={`/${locale}`}>
-            <a>← Back to home</a>
+            <a>← {t('backHomeButton')}</a>
           </Link>
         </div>
       )}

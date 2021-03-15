@@ -4,6 +4,7 @@ import utilStyles from '../../styles/utils.module.css'
 import { getSortedPostData } from '../../lib/posts'
 import Link from 'next/link'
 import Date from '../../components/date'
+import useTranslation from '../../i18n/useTranslation'
 
 export async function getStaticProps({ params }) {
   const allPostsData = getSortedPostData();
@@ -27,11 +28,13 @@ export async function getStaticPaths() {
 
 export default function Home(props) {
 
+  const { t } = useTranslation()
+
   const allPostsData = props.allPostsData
 
   const languageFilteredPosts = () => {
     return allPostsData[0] === undefined ? null : 
-    allPostsData.map(({ id, date, title, lang }) => {if (lang === props.locale) return(
+    allPostsData.map(({ id, date, title, lang }) => {if (lang === props.locale) return (
       <li className={utilStyles.listItem} key={id}>
         <Link href={`${lang}/posts/${id}`}>
           <a>{title}</a>
@@ -52,11 +55,7 @@ export default function Home(props) {
         <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>Web dev learning Next.js</p>
-        <p>
-          (This is a sample website - you’ll be building a site like this on{" "}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
-        </p>
+        <p>{t('description')}</p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
