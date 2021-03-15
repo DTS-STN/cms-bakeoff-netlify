@@ -8,7 +8,6 @@ import { useContext } from 'react'
 import { LanguageContext, locales } from '../i18n/LanguageProvider';
 import useTranslation from '../i18n/useTranslation'
 
-export const siteTitle = 'Next.js Sample Website'
 const name = 'DTS-STN'
 
 export default function Layout({ children, home }) {
@@ -38,10 +37,10 @@ export default function Layout({ children, home }) {
         <meta
           property="og:image"
           content={`https://og-image.vercel.app/${encodeURI(
-            siteTitle
+            t("siteTitle")
           )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
         />
-        <meta name="og:title" content={siteTitle} />
+        <meta name="og:title" content={t("siteTitle")} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <header className={styles.header}>

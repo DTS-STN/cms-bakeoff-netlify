@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Layout, { siteTitle } from '../../components/layout'
+import Layout from '../../components/layout'
 import utilStyles from '../../styles/utils.module.css'
 import { getSortedPostData } from '../../lib/posts'
 import Link from 'next/link'
@@ -51,7 +51,7 @@ export default function Home(props) {
   return (
     <Layout home>
       <Head>
-        <title>{siteTitle}</title>
+        <title>{t("siteTitle")}</title>
         <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
       </Head>
       <section className={utilStyles.headingMd}>
