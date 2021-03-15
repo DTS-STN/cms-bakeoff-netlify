@@ -9,6 +9,7 @@ export async function getStaticProps({ params }) {
   const postData = await getPostData(`/${params.lang}/${params.id}`)
   return {
     props: {
+      locale: params.lang,
       postData
     }
   }
@@ -22,7 +23,7 @@ export async function getStaticPaths() {
   }
 }
 
-export default function Post({ postData }) {
+export default function Post({ postData, locale }) {
   return (
     <Layout>
       <Head>
@@ -31,7 +32,7 @@ export default function Post({ postData }) {
       <article>
         <h1 className={utilStyles.headingXl}>{postData.title}</h1>
         <div className={utilStyles.lightText}>
-          <Date dateString={postData.date} />
+          <Date dateString={postData.date} locale={locale} />
         </div>
         <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
       </article>
