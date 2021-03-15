@@ -4,7 +4,7 @@ import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 import ToggleButton from './toggleButton'
 import { useRouter } from 'next/router'
-import { useState, useEffect, useContext } from 'react'
+import { useContext } from 'react'
 import { LanguageContext, locales } from '../i18n/LanguageProvider';
 
 export const siteTitle = 'Next.js Sample Website'

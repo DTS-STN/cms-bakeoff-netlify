@@ -5,11 +5,11 @@ import { getSortedPostData } from '../../lib/posts'
 import Link from 'next/link'
 import Date from '../../components/date'
 
-export async function getStaticProps(ctx) {
+export async function getStaticProps({ params }) {
   const allPostsData = getSortedPostData();
   return {
     props: {
-      locale: ctx.params?.lang || "en",
+      locale: params.lang,
       allPostsData,
     },
   };
@@ -38,7 +38,7 @@ export default function Home(props) {
         </Link>
         <br />
         <small className={utilStyles.lightText}>
-          <Date dateString={date} />
+          <Date dateString={date} locale={props.locale} />
         </small>
       </li>
     )
