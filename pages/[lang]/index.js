@@ -1,38 +1,38 @@
 import Head from 'next/head'
-import Layout, { siteTitle } from '../components/layout'
-import utilStyles from '../styles/utils.module.css'
-import { getSortedPostData } from '../lib/posts'
+import Layout, { siteTitle } from '../../components/layout'
+import utilStyles from '../../styles/utils.module.css'
+import { getSortedPostData } from '../../lib/posts'
 import Link from 'next/link'
-import Date from '../components/date'
+import Date from '../../components/date'
 import { useRouter } from 'next/router'
 
-export async function getStaticProps() {
+export async function getStaticProps(ctx) {
   const allPostsData = getSortedPostData();
   return {
     props: {
-      // locale: ctx.params?.lang || "fr",
+      locale: ctx.params?.lang || "fr",
       allPostsData,
     },
   };
 }
 
 // Generates static files on export
-export async function GetStaticPaths() {
+export async function getStaticPaths() {
   // All supported languages must be listed in 'paths'.
   // If not informed, the static page will not be generated.
   return {
-    paths: [{ params: { lang: "en" } }, { params: { lang: "pt" } }],
+    paths: [{ params: { lang: "en" } }, { params: { lang: "fr" } }],
     fallback: false,
   }
 }
 
-export default function Home({ allPostsData }) {
-
-  const router = useRouter()
+export default function Home(props) {
+  
+  const allPostsData = props.allPostsData
 
   const languageFilteredPosts = () => {
     return allPostsData[0] === undefined ? null : 
-    allPostsData.map(({ id, date, title, lang }) => {if (lang === router.locale) return(
+    allPostsData.map(({ id, date, title, lang }) => {if (lang === props.locale) return(
       <li className={utilStyles.listItem} key={id}>
         <Link href={`/posts/${id}`}>
           <a>{title}</a>
