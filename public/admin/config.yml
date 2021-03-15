@@ -1,6 +1,6 @@
 backend:
-  name: git-gateway
-  branch: i18n-editor
+  name: test-repo
+  branch: LanguageToggle
 
 # when using the default proxy server port
 local_backend: true

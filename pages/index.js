@@ -20,18 +20,21 @@ export async function getStaticProps() {
 export default function Home({ allPostsData }) {
   const [language, setLanguage] = useState("en");
   const router = useRouter();
+
   const toggleLanguage = (language) =>{
     console.log(language)
-    language === "fr"?router.push('/'):router.push('/fr') //error is here. When in fr I want to push to home page ('/').. dont know how.
+    language === "fr" ? router.push('/', '/', { locale: 'en' }) : router.push('/', '/', { locale: 'fr' })
   }
+
   useEffect(() => {
-    if(window.location.pathname !== "/"){
+    if(router.locale === 'fr' | window.location.pathname.includes("/fr")) {
       setLanguage("fr")
     }
     else{
       setLanguage("en")
     }
   }, [toggleLanguage])
+
   const languageFilteredPosts = () =>{
     return allPostsData[0] === undefined ? null : 
     allPostsData.map(({ id, date, title }) => {if (id.slice(-2) === language) return(
@@ -47,6 +50,7 @@ export default function Home({ allPostsData }) {
     )
   })
   }
+
   return (
     <Layout home>
       <Head>
