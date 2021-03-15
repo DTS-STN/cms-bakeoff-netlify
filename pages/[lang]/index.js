@@ -36,7 +36,7 @@ export default function Home(props) {
     return allPostsData[0] === undefined ? null : 
     allPostsData.map(({ id, date, title, lang }) => {if (lang === props.locale) return (
       <li className={utilStyles.listItem} key={id}>
-        <Link href={`${lang}/posts/${id}`}>
+        <Link href={`/${lang}/posts/${id}`}>
           <a>{title}</a>
         </Link>
         <br />
