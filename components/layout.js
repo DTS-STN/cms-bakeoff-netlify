@@ -4,30 +4,25 @@ import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 import ToggleButton from './toggleButton'
 import { useRouter } from 'next/router'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { LanguageContext, locales } from '../i18n/LanguageProvider';
 
 export const siteTitle = 'Next.js Sample Website'
 const name = 'DTS-STN'
 
 export default function Layout({ children, home }) {
-  const [language, setLanguage] = useState("en")
+  const [locale, setLocale] = useContext(LanguageContext);
   const router = useRouter()
   
-  const toggleLanguage = (language) => {
-    console.log(language)
-    language === "fr" ? 
-      router.push(router.pathname, router.pathname, { locale: 'en' }) : 
-      router.push(router.pathname, router.pathname, { locale: 'fr' })
-  }
+  function handleLocaleChange() {
+    const language = locale === 'en' ? 'fr' : 'en'
 
-  useEffect(() => {
-    if(router.locale === 'fr' | window.location.pathname.includes("/fr")) {
-      setLanguage("fr")
-    }
-    else{
-      setLanguage("en")
-    }
-  })
+    const regex = new RegExp(`^/(${locales.join('|')})`);
+    localStorage.setItem('lang', language);
+    setLocale(language);
+
+    router.push(router.pathname, router.asPath.replace(regex, `/${language}`));
+  }
   
   return (
     <div className={styles.container}>
@@ -47,7 +42,7 @@ export default function Layout({ children, home }) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <header className={styles.header}>
-        <ToggleButton language={language} toggleLanguage={toggleLanguage} />
+        <ToggleButton language={locale} toggleLanguage={handleLocaleChange} />
         {home ? (
           <>
             <img
@@ -83,7 +78,7 @@ export default function Layout({ children, home }) {
       <main>{children}</main>
       {!home && (
         <div className={styles.backToHome}>
-          <Link href="/">
+          <Link href={`/${locale}`}>
             <a>← Back to home</a>
           </Link>
         </div>

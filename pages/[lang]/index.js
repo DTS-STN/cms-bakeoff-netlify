@@ -4,13 +4,12 @@ import utilStyles from '../../styles/utils.module.css'
 import { getSortedPostData } from '../../lib/posts'
 import Link from 'next/link'
 import Date from '../../components/date'
-import { useRouter } from 'next/router'
 
 export async function getStaticProps(ctx) {
   const allPostsData = getSortedPostData();
   return {
     props: {
-      locale: ctx.params?.lang || "fr",
+      locale: ctx.params?.lang || "en",
       allPostsData,
     },
   };
