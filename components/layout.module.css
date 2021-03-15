@@ -10,6 +10,10 @@
   align-items: center;
 }
 
+.langButton {
+  margin-bottom: 2rem !important;
+}
+
 .backToHome {
   margin: 3rem 0 0;
 }

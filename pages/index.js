@@ -1,7 +1,5 @@
 import Head from 'next/head'
-import React, { useState, useEffect } from 'react';
 import Layout, { siteTitle } from '../components/layout'
-import ToggleButton from '../components/toggleButton'
 import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData } from '../lib/posts'
 import Link from 'next/link'
@@ -18,26 +16,12 @@ export async function getStaticProps() {
 }
 
 export default function Home({ allPostsData }) {
-  const [language, setLanguage] = useState("en");
-  const router = useRouter();
 
-  const toggleLanguage = (language) =>{
-    console.log(language)
-    language === "fr" ? router.push('/', '/', { locale: 'en' }) : router.push('/', '/', { locale: 'fr' })
-  }
+  const router = useRouter()
 
-  useEffect(() => {
-    if(router.locale === 'fr' | window.location.pathname.includes("/fr")) {
-      setLanguage("fr")
-    }
-    else{
-      setLanguage("en")
-    }
-  }, [toggleLanguage])
-
-  const languageFilteredPosts = () =>{
+  const languageFilteredPosts = () => {
     return allPostsData[0] === undefined ? null : 
-    allPostsData.map(({ id, date, title }) => {if (id.slice(-2) === language) return(
+    allPostsData.map(({ id, date, title }) => {if (id.slice(-2) === router.locale) return(
       <li className={utilStyles.listItem} key={id}>
         <Link href={`/posts/${id}`}>
           <a>{title}</a>
@@ -57,7 +41,6 @@ export default function Home({ allPostsData }) {
         <title>{siteTitle}</title>
         <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
       </Head>
-      <ToggleButton language={language} toggleLanguage={toggleLanguage}/>
       <section className={utilStyles.headingMd}>
         <p>Web dev learning Next.js</p>
         <p>

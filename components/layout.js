@@ -2,11 +2,33 @@ import Head from 'next/head'
 import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
+import ToggleButton from './toggleButton'
+import { useRouter } from 'next/router'
+import { useState, useEffect } from 'react'
 
-const name = 'DTS-STN'
 export const siteTitle = 'Next.js Sample Website'
+const name = 'DTS-STN'
 
 export default function Layout({ children, home }) {
+  const [language, setLanguage] = useState("en")
+  const router = useRouter()
+  
+  const toggleLanguage = (language) => {
+    console.log(language)
+    language === "fr" ? 
+      router.push(router.pathname, router.pathname, { locale: 'en' }) : 
+      router.push(router.pathname, router.pathname, { locale: 'fr' })
+  }
+
+  useEffect(() => {
+    if(router.locale === 'fr' | window.location.pathname.includes("/fr")) {
+      setLanguage("fr")
+    }
+    else{
+      setLanguage("en")
+    }
+  })
+  
   return (
     <div className={styles.container}>
       <Head>
@@ -25,6 +47,7 @@ export default function Layout({ children, home }) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <header className={styles.header}>
+        <ToggleButton language={language} toggleLanguage={toggleLanguage} />
         {home ? (
           <>
             <img
