@@ -1,12 +1,12 @@
-import Layout from '../../components/layout'
+import Layout from '../../../components/layout'
 import Head from 'next/head'
-import { getAllPostIds, getPostData } from '../../lib/posts'
-import Date from '../../components/date'
-import utilStyles from '../../styles/utils.module.css'
+import { getAllPostIds, getPostData } from '../../../lib/posts'
+import Date from '../../../components/date'
+import utilStyles from '../../../styles/utils.module.css'
 
 
 export async function getStaticProps({ params }) {
-  const postData = await getPostData(params.id)
+  const postData = await getPostData(`/${params.lang}/${params.id}`)
   return {
     props: {
       postData

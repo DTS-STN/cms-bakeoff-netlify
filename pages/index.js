@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Layout, { siteTitle } from "../components/layout";
 import ToggleButton from "../components/toggleButton";
 import utilStyles from "../styles/utils.module.css";
-import { getSortedPostsData } from "../lib/posts";
+import { getSortedPostData } from "../lib/posts";
 import Link from "next/link";
 import Date from "../components/date";
 import { useRouter } from "next/router";
@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 
 
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
+  const allPostsData = getSortedPostData();
   return {
     props: {
       // locale: ctx.params?.lang || "fr",
