@@ -10,6 +10,9 @@ publish_mode: editorial_workflow
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
+display_url: https://optimistic-hamilton-9b7da5.netlify.app/
+logo_url: https://cdn.freebiesupply.com/logos/large/2x/canada-4-logo-svg-vector.svg
+
 i18n:
   structure: multiple_folders
   locales: [en, fr]
