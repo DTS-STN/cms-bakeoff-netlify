@@ -28,6 +28,8 @@ collections:
         name: "title"
         widget: "string"
         i18n: true
+        hint: >-
+          The title of your post
       - label: "Publish Date"
         name: "date"
         widget: "datetime"
@@ -35,13 +37,18 @@ collections:
         date_format: "YYYY-MM-DD"
         time_format: false
         i18n: duplicate
+        hint: >-
+          The date that your post will be published
       - label: Language
         name: "lang"
-        widget: "string"
+        widget: "select"
+        options: ["en", "fr"]
         i18n: true
-        pattern: ['^(en|fr)$', "Please enter either 'en' or 'fr' based on the current editor."]
-        comment: "Check the current editor and enter the correct language: 'en' or 'fr'"
+        hint: >-
+          The language that your post will be in.
       - label: "Body" 
         name: "body"
         widget: "markdown"
         i18n: true
+        hint: >-
+          The content of your post
