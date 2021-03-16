@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: language-toggle-j
+  branch: main
 
 # when using the default proxy server port
 local_backend: true
@@ -35,10 +35,12 @@ collections:
         date_format: "YYYY-MM-DD"
         time_format: false
         i18n: duplicate
-      - label: lang
+      - label: Language
         name: "lang"
         widget: "string"
         i18n: true
+        pattern: ['^(en|fr)$', "Please enter either 'en' or 'fr' based on the current editor."]
+        comment: "Check the current editor and enter the correct language: 'en' or 'fr'"
       - label: "Body" 
         name: "body"
         widget: "markdown"
