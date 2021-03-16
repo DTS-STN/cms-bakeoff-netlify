@@ -45,7 +45,7 @@ collections:
         options: ["en", "fr"]
         i18n: true
         hint: >-
-          The language that your post will be in.
+          The language that your post will be in. It must match the current editor language at the top of the page.
       - label: "Body" 
         name: "body"
         widget: "markdown"
